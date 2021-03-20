@@ -13,4 +13,9 @@ Some notes about Data structure and Algorithm.
 
 ##### bisearch（二分查找）
 
-实现了find，lower_bound，upper_bound。之前总想用类似于lower_bound的方式实现find，就是不对`nums[mid]==target`做单独的判断，等跳出循环后再根据`nums[left]==target`来判断找没找到，但后来发现不合适，因为还得处理数组越界的问题。
+实现了find，lower_bound，upper_bound。之前总想用类似于lower_bound的方式实现find，就是不对`nums[mid]==target`做单独的判断，等跳出循环后再根据`nums[left]==target`来判断找没找到，但后来发现不合适，因为还得处理`nums[left]`有没有越界的问题。
+
+##### list（双向链表）
+
+看到链表就想到fake head，就像说起西红柿就想到炒鸡蛋一样自然。
+
