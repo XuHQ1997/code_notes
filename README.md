@@ -25,3 +25,7 @@ Some notes about Data structure and Algorithm.
 
 1. 朴素dp中，`dp[i][j]`里面的`i`是从1开始的，不能直接索引物品体积数组和价值数组。
 2. 空间优化的dp中，对`j`的遍历需要反着来，因为`dp[i][j]`依赖于`dp[i-1][0:j+1]`。
+
+##### math_tools（一些数学问题）
+
+最小公倍数gcd、不溢出地计算组合数、线性素数筛。
