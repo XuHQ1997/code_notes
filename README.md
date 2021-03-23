@@ -9,7 +9,7 @@ Some notes about Data structure and Algorithm.
 
 ##### sort（排序）
 
-各种简单的排序算法，select sort、bubble sort、heap sort、merge sort、quick sort。
+各种简单的排序算法，select sort、bubble sort、heap sort、merge sort、quick sort、radix sort。
 
 ##### bisearch（二分查找）
 

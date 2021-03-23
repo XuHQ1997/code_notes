@@ -29,7 +29,7 @@ void sort(vector<int>& nums, int start, int end) {
 
 namespace bubble {
 void sort(vector<int>& nums, int start, int end) {
-    for(int i = end; i > 0; --i) {
+    for(int i = end; i > start; --i) {
         bool flag = false;
         for(int j = 1; j < i; ++j) {
             if(nums[j-1] > nums[j]) {
@@ -139,9 +139,38 @@ void sort(vector<int>& nums, int start, int end) {
 }
 }  // namespace merge
 
+namespace radix {
+void sort(vector<int>& nums, int begin, int end) {
+    vector<int> buf(end - begin);
+    int max_value = INT_MIN;
+    for(int i = begin; i < end; ++i)
+        max_value = max(max_value, nums[i]);
+
+    for(int exp = 1; exp <= max_value; exp *= 10) {
+        vector<int> count(10, 0);
+        for(int i = begin; i < end; ++i) {
+            int digit = (nums[i] / exp) % 10;
+            ++count[digit];
+        }
+
+        for(int i = 1; i < count.size(); ++i)
+            count[i] += count[i-1];
+
+        for(int i = end - 1; i >= begin; --i) {
+            int digit = (nums[i] / exp) % 10;
+            buf[--count[digit]] = nums[i];
+        }
+
+        for(int i = 0; i < buf.size(); ++i)
+            nums[begin + i] = buf[i];
+    }
+}
+}  // namespace radix
+
+
 int main() {
     constexpr int n_tests = 100;
-    constexpr int n_samples = 10;
+    constexpr int n_samples = 1000;
 
     using sort_fn = void(*)(vector<int>&, int, int);
     vector<pair<string, sort_fn>> handlers{
@@ -149,11 +178,12 @@ int main() {
         {"bubble", bubble::sort}, 
         {"heap", heap::sort},
         {"quick", quick::sort},
-        {"merge", merge::sort}
+        {"merge", merge::sort},
+        {"radix", radix::sort}  // only work on nonnegtive integers.
     };
 
     default_random_engine e(time(0));
-    uniform_int_distribution<int> u(-n_samples, n_samples);
+    uniform_int_distribution<int> u(0, n_samples);
     auto init_nums = [&u, &e]() {
         vector<int> nums(n_samples, 0);
         for(int i = 0; i < nums.size(); ++i)
