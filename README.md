@@ -9,7 +9,7 @@ Some notes about Data structure and Algorithm.
 
 ##### sort（排序）
 
-各种简单的排序算法，select sort、bubble sort、heap sort、merge sort、quick sort、radix sort。
+各种简单的排序算法，select sort、bubble sort、heap sort、merge sort、quick sort、radix sort。这里实现的radix sort仅支持非负数，所以test时生成的样本也都是非负的。
 
 ##### bisearch（二分查找）
 
@@ -29,3 +29,7 @@ Some notes about Data structure and Algorithm.
 ##### math_tools（一些数学问题）
 
 最小公倍数gcd、不溢出地计算组合数、线性素数筛。
+
+##### permutation（按字典序的下一个排列）
+
+next_permutation、prev_permutation。和STL使用相同的算法，但是行为没有和STL完全一致。当没有next permutaion时，`std::next_permutation`返回`false`，并将输入变为单调递增数列，而这里的实现直接返回。
