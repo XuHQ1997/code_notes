@@ -33,3 +33,7 @@ Some notes about Data structure and Algorithm.
 ##### permutation（按字典序的下一个排列）
 
 next_permutation、prev_permutation。和STL使用相同的算法，但是行为没有和STL完全一致。当没有next permutaion时，`std::next_permutation`返回`false`，并将输入变为单调递增数列，而这里的实现直接返回。
+
+##### topk（最大的k个数）
+
+三种算法，思路分别类似于bubble sort、quick sort、heap sort。实现中的其实是“top k+1”，即保证`nums[k]`是第k+1大的数，`nums[0:k]`都大于等于`nums[k]`，`nums[k+1:]`都小于等于`nums[k]`。
