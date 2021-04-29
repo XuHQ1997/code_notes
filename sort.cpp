@@ -37,6 +37,8 @@ void sort(vector<int>& nums, int start, int end) {
                 flag = true;
             }
         }
+        if(!flag)
+            break;
     }
 }
 }  // namespace bubble
