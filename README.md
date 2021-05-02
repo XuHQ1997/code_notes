@@ -37,3 +37,9 @@ next_permutation、prev_permutation。和STL使用相同的算法，但是行为
 ##### topk（最大的k个数）
 
 三种算法，思路分别类似于bubble sort、quick sort、heap sort。实现中的其实是“top k+1”，即保证`nums[k]`是第k+1大的数，`nums[0:k]`都大于等于`nums[k]`，`nums[k+1:]`都小于等于`nums[k]`。
+
+##### min_spanning_tree（最小生成树）
+
+实现了prime算法和kruscal算法。prime算法遍历点，需要能够直接查询任意两点之间的距离，所以需要构造邻接矩阵；kruscal算法遍历边，所以有边集的话，会方便一点。
+
+笔试的时候把并查集写错了，痛定思痛......（记住union需要先find）
