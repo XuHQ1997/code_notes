@@ -43,3 +43,7 @@ next_permutation、prev_permutation。和STL使用相同的算法，但是行为
 实现了prime算法和kruscal算法。prime算法遍历点，需要能够直接查询任意两点之间的距离，所以需要构造邻接矩阵；kruscal算法遍历边，所以有边集的话，会方便一点。
 
 笔试的时候把并查集写错了，痛定思痛......（记住union需要先find）
+
+##### shortest_path（单源最短路径）
+
+使用链式前向星储存图，实现了dijkstra算法和spfa算法。
