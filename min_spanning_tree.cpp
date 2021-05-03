@@ -8,6 +8,7 @@
 using namespace std;
 
 struct Edge {
+    // The edge here is undirected.
     int start, end, value;
 };
 
@@ -159,9 +160,6 @@ int main() {
         vector<Edge> edges = build_graph();
         vector<Edge> ret1 = kruscal::mst(n_points, edges);
         vector<Edge> ret2 = prime::mst(n_points, edges);
-
-        if(ret1.empty())
-            cout << "not connected" << endl;
 
         assert(!(ret1.empty()^ret2.empty()));
         assert(compute_cost(ret1) == compute_cost(ret2));
