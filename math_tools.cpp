@@ -42,19 +42,88 @@ vector<int> linear_prime_sieve(int n) {
     return primes;
 }
 
+namespace average {
+long long v1(const vector<long long>& nums) {
+    long long sum = 0;
+    for(auto i : nums)
+        sum += i;  // overflow
+    return sum / nums.size();
+}
+
+long long v2(const vector<long long>& nums) {
+    long long size = nums.size();
+    long long avg = 0;
+    long long remainder = 0;
+
+    for(auto i : nums) {
+        avg += i / size;
+        remainder += i % size;  // overflow
+
+        avg += remainder / size;
+        remainder %= size;
+    }
+    return avg;
+}
+
+long long v3(const vector<long long>& nums) {
+    long long size = nums.size();
+    long long avg = 0;
+    long long remainder = 0;
+
+    for(auto i : nums) {
+        avg += i / size;
+
+        long long current_remainder = i % size;
+        if(remainder > LLONG_MAX - current_remainder) {
+            ++avg;
+            remainder -= size;
+        }
+        remainder += current_remainder;
+
+        avg += remainder / size;
+        remainder %= size;
+    }
+    return avg;
+}
+}  // namespace average
+
 int main() {
+    // ========================================
+    // simple test for gcd
+    // ========================================
     cout << gcd(1, 2) << endl;
     cout << gcd(2, 4) << endl;
     cout << gcd(12, 8) << endl;
     cout << gcd(7, 3) << endl;
 
+    // ========================================
+    // simple test for combination
+    // ========================================
     cout << combination(5, 3) << endl;
     cout << combination(10, 3) << endl;
     
+    // ========================================
+    // simple test for linear_prime_sieve
+    // ========================================
     auto primes = linear_prime_sieve(100);
     for(int i : primes) 
         cout << i << " ";
     cout << endl;
+
+    // ========================================
+    // simple test for average
+    // ========================================
+    vector<long long> nums{
+        LLONG_MAX - 1, LLONG_MAX - 2, LLONG_MAX - 3, LLONG_MAX - 4, LLONG_MAX - 5
+    };
+    long long avg = average::v3(nums);
+    cout << avg << " == " << LLONG_MAX - 3 << endl;
+    
+    nums = {
+        LLONG_MIN + 1, LLONG_MIN + 2, LLONG_MIN + 3, LLONG_MIN + 4, LLONG_MIN + 5
+    };
+    avg = average::v3(nums);
+    cout << avg << " == " << LLONG_MIN + 3 << endl;
 
     return 0;
 }
