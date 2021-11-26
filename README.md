@@ -28,7 +28,7 @@ Some notes about Data structure and Algorithm.
 
 ##### math_tools（一些数学问题）
 
-最小公倍数gcd、不溢出地计算组合数、线性素数筛。
+字母的小写、最小公倍数gcd、不溢出地计算组合数、线性素数筛。
 
 （update-2021-05-06）添加一个腾讯云凉面的面试题，求long long数组的平均数，关键在于避免溢出。
 

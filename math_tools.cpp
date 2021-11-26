@@ -3,6 +3,11 @@
 
 using namespace std;
 
+// return lower case of a alpha
+char lower(char c) {
+    return c | 0x20;
+}
+
 // Compute the greatest common divisor of a and b.
 int gcd(int a, int b) {
     return a % b == 0 ? b : gcd(b, a % b);
@@ -88,6 +93,14 @@ long long v3(const vector<long long>& nums) {
 }  // namespace average
 
 int main() {
+    // ========================================
+    // simple test for lower
+    // ========================================
+    cout << 'Z' << " => " << lower('Z') << endl;
+    cout << 'A' << " => " << lower('A') << endl;
+    cout << 'a' << " => " << lower('a') << endl;
+    cout << 'z' << " => " << lower('z') << endl;
+
     // ========================================
     // simple test for gcd
     // ========================================
