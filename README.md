@@ -49,3 +49,7 @@ next_permutation、prev_permutation。和STL使用相同的算法，但是行为
 ##### shortest_path（单源最短路径）
 
 使用链式前向星储存图，实现了dijkstra算法和spfa算法。
+
+##### trie_tree (字典树)
+
+字典树存储、查找字符串。
