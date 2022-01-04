@@ -34,6 +34,41 @@ ListNode* reverse(ListNode* head) {
     return prev;
 }
 
+// If the length of list isn't less than k,
+// reverse the order of the first k nodes.
+// Otherwise, do nothing.
+// Always return head of the new list.
+ListNode* revserse_k_nodes(ListNode* head, int k) {
+    if (get_list_length(head) < k) {
+        return head;
+    }
+
+    ListNode* prev = nullptr;
+    ListNode* cur = head;
+    ListNode* next = nullptr;
+    while(k--) {
+        next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    head->next = next;
+    return prev;
+}
+
+// Leetcode 25. 
+ListNode* rotate_k_group(ListNode* head, int k) {
+    ListNode fake_head = {INT_MIN, head};
+    ListNode* prev = &fake_head;
+    while(get_list_length(head) >= k) {
+        ListNode* new_head = revserse_k_nodes(head, k);
+        prev->next = new_head;
+        prev = head;
+        head = head->next;
+    }
+    return fake_head.next;
+}
+
 ListNode* get_Kth_from_last(ListNode* head, int k) {
     ListNode* fast = head;
     ListNode* slow = head;
@@ -112,5 +147,29 @@ int main() {
     }
     cout << "getKthFromlast Pass." << endl;
     cout << "getMidNode Pass" << endl;
+
+    /* ===============================================
+        test for rotate_k_group
+    =============================================== */
+    for (int i = 0; i < n_tests; ++i) {
+        auto dataptr = generate_linkedlist();
+        ListNode* head = dataptr.get();
+        int length = get_list_length(head);
+
+        int k = (n_node_dist(e) % length) + 1;
+        ListNode* ret = rotate_k_group(head, k);
+        int thresh = length / k * k;
+        for (int j = 0; j < length; ++j, ret = ret->next) {
+            if (j < thresh) {
+                int group_idx = j / k;
+                int in_group_idx = j - group_idx * k + 1;
+                assert(ret->val == (group_idx + 1) * k - in_group_idx);
+            } else {
+                assert(ret->val == j);
+            }
+        }
+    }
+    cout << "rotateKGroup Pass" << endl;
+
     return 0;
 }
